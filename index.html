@@ -18,6 +18,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>emailjs.init(window.EMAILJS_PUBLIC_KEY);</script>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -1157,28 +1160,23 @@
       <!-- Right: Form -->
       <div class="reveal reveal-d1">
         <form class="contact-form" onsubmit="handleSubmit(event)">
-          <div class="form-row">
-            <div class="f-group">
-              <label>First Name</label>
-              <input type="text" placeholder="John" required />
-            </div>
-            <div class="f-group">
-              <label>Last Name</label>
-              <input type="text" placeholder="Doe" required />
-            </div>
+          <div class="f-group">
+            <label>Full Name</label>
+            <input type="text" name="name" placeholder="John Doe" required />
           </div>
           <div class="f-group">
             <label>Email Address</label>
-            <input type="email" placeholder="john@company.com" required />
+            <input type="email" name="reply_to" placeholder="john@company.com" required />
           </div>
           <div class="f-group">
             <label>Subject</label>
-            <input type="text" placeholder="Project enquiry / Job opportunity" />
+            <input type="text" name="subject" placeholder="Project enquiry / Job opportunity" />
           </div>
           <div class="f-group">
             <label>Message</label>
-            <textarea placeholder="Tell me about your project, timeline, and budget..."></textarea>
+            <textarea name="message" placeholder="Tell me about your project, timeline, and budget..."></textarea>
           </div>
+          <input type="hidden" name="time" />
           <button type="submit" class="btn-submit">
             Send Message
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
@@ -1192,11 +1190,13 @@
 <!-- Footer -->
 <footer>
   <span class="foot-logo">A<span>o</span></span>
-  <span>© 2025 Abdulazeez Olalere</span>
+  <span>© <span id="copy-year"></span> Abdulazeez Olalere</span>
   <span>Lagos, Nigeria</span>
 </footer>
 
 <script>
+  document.getElementById('copy-year').textContent = new Date().getFullYear();
+
   // ── Cursor ──
   const cursor = document.getElementById('cursor');
   let mx = 0, my = 0;
@@ -1290,14 +1290,35 @@
   // ── Contact Form ──
   function handleSubmit(e) {
     e.preventDefault();
-    const btn = e.target.querySelector('.btn-submit');
-    btn.textContent = 'Message Sent ✓';
-    btn.style.background = '#2E7D32';
-    setTimeout(() => {
-      btn.innerHTML = 'Send Message <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>';
-      btn.style.background = '';
-      e.target.reset();
-    }, 3000);
+    const form = e.target;
+    const btn = form.querySelector('.btn-submit');
+    const sendIcon = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>';
+
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    form.querySelector('[name="time"]').value = new Date().toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' });
+
+    emailjs.sendForm(window.EMAILJS_SERVICE_ID, window.EMAILJS_TEMPLATE_ID, form)
+      .then(() => {
+        btn.textContent = 'Message Sent ✓';
+        btn.style.background = '#2E7D32';
+        btn.disabled = false;
+        setTimeout(() => {
+          btn.innerHTML = 'Send Message ' + sendIcon;
+          btn.style.background = '';
+          form.reset();
+        }, 3000);
+      })
+      .catch(() => {
+        btn.innerHTML = 'Failed — try again ' + sendIcon;
+        btn.style.background = '#c0392b';
+        btn.disabled = false;
+        setTimeout(() => {
+          btn.innerHTML = 'Send Message ' + sendIcon;
+          btn.style.background = '';
+        }, 3000);
+      });
   }
 </script>
 </body>
