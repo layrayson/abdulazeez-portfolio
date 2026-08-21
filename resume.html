@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Abdulazeez Olalere — Resume</title>
+    <style>
+      @page {
+        size: A4;
+        margin: 11.5mm 12.5mm 11.5mm 12.5mm;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Avenir Next", "Segoe UI", Helvetica, sans-serif;
+        font-size: 9pt;
+        line-height: 1.34;
+        color: #19160a;
+        background: #fff;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      a.link {
+        color: #bf7d08;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 1.5rem;
+        padding-bottom: 9px;
+        border-bottom: 2px solid #e8a020;
+        margin-bottom: 9px;
+      }
+      h1 {
+        font-family: Georgia, "Iowan Old Style", serif;
+        font-size: 21.5pt;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1.05;
+      }
+      .role {
+        margin-top: 3px;
+        font-size: 10.2pt;
+        font-weight: 600;
+        color: #e8a020;
+        letter-spacing: 0.01em;
+      }
+      .contact {
+        text-align: right;
+        font-size: 8pt;
+        line-height: 1.52;
+        color: #4a453c;
+      }
+      .contact a {
+        color: #4a453c;
+      }
+      h2 {
+        font-size: 7.8pt;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #e8a020;
+        margin: 9px 0 4px;
+        padding-bottom: 2px;
+        border-bottom: 1px solid rgba(26, 22, 10, 0.12);
+      }
+      .summary {
+        color: #2e2b1e;
+      }
+      .job,
+      .proj {
+        margin-bottom: 6.5px;
+      }
+      .job-head,
+      .proj-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 0.75rem;
+      }
+      .job-title {
+        font-weight: 700;
+        font-size: 9.6pt;
+      }
+      .job-meta {
+        font-size: 8pt;
+        color: #6b6458;
+        white-space: nowrap;
+      }
+      .job-co {
+        font-size: 8.2pt;
+        color: #6b6458;
+        margin: 1px 0 2px;
+      }
+      ul {
+        padding-left: 1.05em;
+      }
+      li {
+        margin-bottom: 1.2px;
+        color: #2e2b1e;
+      }
+      .tech {
+        font-size: 7.8pt;
+        color: #6b6458;
+        margin-top: 1px;
+      }
+      .skills p {
+        margin-bottom: 2.5px;
+      }
+      .skills strong {
+        font-weight: 650;
+      }
+      .two {
+        display: grid;
+        grid-template-columns: 1.05fr 1.2fr;
+        gap: 0 1.4rem;
+      }
+      .edu-line,
+      .cert-line,
+      .write-line {
+        margin-bottom: 2.5px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>Abdulazeez Olalere</h1>
+        <p class="role">Senior Software Engineer</p>
+      </div>
+      <div class="contact">
+        Lagos, Nigeria<br />
+        <a href="mailto:olalereazeez11@gmail.com">olalereazeez11@gmail.com</a>
+        · +234 708 037 0133<br />
+        <a href="https://abdulazeezolalere.com">abdulazeezolalere.com</a>
+        ·
+        <a href="https://github.com/layrayson">GitHub</a>
+        ·
+        <a href="https://www.linkedin.com/in/abdulazeez-olalere-5a1a53197/"
+          >LinkedIn</a
+        >
+      </div>
+    </header>
+
+    <h2>Summary</h2>
+    <p class="summary">
+      Senior software engineer with 5+ years shipping full-stack, mobile, and
+      applied AI products. Most recently fintech and crypto: wallets, payments,
+      two apps on the stores, plus AI systems in production. I work across
+      React, Next.js, and React Native on the front. Node.js, NestJS, and
+      PostgreSQL on the back.
+    </p>
+
+    <h2>Experience</h2>
+
+    <div class="job">
+      <div class="job-head">
+        <span class="job-title">Senior Mobile Developer</span>
+        <span class="job-meta">05/2025 — Present</span>
+      </div>
+      <div class="job-co">Lipaworld, Delaware, USA (Remote)</div>
+      <ul>
+        <li>
+          Built and shipped a stablecoin wallet app to both the App Store and
+          Play Store, covering Solana and Base wallet creation, onramp/offramp,
+          and full wallet lifecycle management, with features now processing
+          over $250K in monthly onramp/offramp transaction volume.
+        </li>
+        <li>
+          Implemented virtual multi-currency bank account creation (USD, EUR,
+          GBP) and virtual card flows, enabling users across African and
+          European markets to hold and spend fiat from a single app.
+        </li>
+        <li>
+          Developed P2P transfer functionality and an in-app voucher
+          marketplace, broadening the platform’s utility into peer payments and
+          digital commerce.
+        </li>
+        <li>
+          Integrated KYC verification, third-party payment SDKs, Firebase push
+          notifications, and in-app support tooling, delivering a seamless
+          end-to-end experience from signup to first transaction.
+        </li>
+        <li>
+          Migrated the codebase from bare React Native to Expo, enabling OTA
+          updates; upgraded the Android target SDK and realigned native
+          libraries to 16KB memory page boundaries for full Google Play
+          compliance ahead of the Android 15+ deadline.
+        </li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <span class="job-title">Frontend &amp; Mobile Engineer</span>
+        <span class="job-meta">08/2024 — 05/2025</span>
+      </div>
+      <div class="job-co">Titan Payment Systems, Tema, Ghana</div>
+      <ul>
+        <li>
+          Built MyCashBox from scratch, a mobile money and bank transfer app for
+          West Africa, and shipped it to both the Play Store and App Store,
+          expanding the platform’s reach across multiple markets.
+        </li>
+        <li>
+          Designed the complete Redux state architecture for authentication and
+          all transaction flows, and managed server state with React Query,
+          resulting in a stable and predictable data layer.
+        </li>
+        <li>
+          Upgraded the Android target SDK and realigned native libraries to 16KB
+          memory page boundaries, ensuring full Google Play compliance with the
+          Android 15+ policy.
+        </li>
+        <li>
+          Built the MyCashBox marketing landing page in Next.js, enabling the
+          team to capture and manage a waitlist of prospective users ahead of
+          launch.
+        </li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <span class="job-title">Software Engineer</span>
+        <span class="job-meta">08/2023 — 07/2024</span>
+      </div>
+      <div class="job-co">Thrillers Travels, Lagos, Nigeria</div>
+      <ul>
+        <li>
+          Led development of a full flight and hotel booking system, integrating
+          the Tequila (Kiwi) flight API and RateHawk hotel API end-to-end.
+        </li>
+        <li>
+          Implemented role-based live audio rooms (host, co-host, speaker,
+          listener) with mic-permission management using React Video SDK,
+          enabling interactive events on the social platform.
+        </li>
+        <li>
+          Rebuilt the visa application UI in Next.js, directly contributing to
+          1,000+ user signups and successful visa applications processed through
+          the platform.
+        </li>
+        <li>
+          Managed the team’s Git workflow, led code reviews, and coordinated
+          across design, backend, and product to keep delivery on track.
+        </li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <span class="job-title">Software Engineer</span>
+        <span class="job-meta">03/2021 — 07/2023</span>
+      </div>
+      <div class="job-co">Joovlin, Lagos, Nigeria</div>
+      <ul>
+        <li>
+          Designed and built backend infrastructure from scratch, including REST
+          APIs, WebSocket channels, and GraphQL endpoints, powering a
+          social-commerce platform that grew past 4,000 merchant signups.
+        </li>
+        <li>
+          Developed the merchant-facing React + Redux dashboard tied directly to
+          platform growth; contributed to the Flutter app (BLoC) shipped to both
+          stores.
+        </li>
+        <li>
+          Wrote comprehensive unit and e2e tests across a rapidly growing
+          codebase; delivered 6+ additional web applications using various JS
+          frameworks.
+        </li>
+        <li>
+          Collaborated across frontend, backend, and mobile tracks, as one of
+          few engineers contributing meaningfully to all three layers of the
+          product.
+        </li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <span class="job-title">Frontend Engineer</span>
+        <span class="job-meta">06/2020 — 11/2020</span>
+      </div>
+      <div class="job-co">Full Power Webs, India (Remote)</div>
+      <ul>
+        <li>
+          Refactored the main product UI with React + TypeScript, achieving a
+          98% Lighthouse performance score.
+        </li>
+        <li>
+          Resolved critical frontend bugs with a 90% ticket resolution rate,
+          significantly reducing the backlog inherited from the previous team.
+        </li>
+      </ul>
+    </div>
+
+    <h2>Projects</h2>
+
+    <div class="proj">
+      <div class="proj-head">
+        <span class="job-title"
+          >VisaRoom — Full-Stack / Voice AI ·
+          <a class="link" href="https://visaroom.co">visaroom.co</a></span
+        >
+        <span class="job-meta">2026 — Present</span>
+      </div>
+      <p>
+        Voice rehearsal for visa interviews. An officer asks real questions for
+        your track; you answer out loud, under time. Catches where answers
+        contradict — before the window does.
+      </p>
+      <p class="tech">
+        Next.js · TypeScript · Node.js · OpenAI · Deepgram · Drizzle ·
+        PostgreSQL · Flutterwave · AWS
+      </p>
+    </div>
+
+    <div class="proj">
+      <div class="proj-head">
+        <span class="job-title">Classwyz (CampusTutor) — Full-Stack / AI Engineer</span>
+        <span class="job-meta">01/2026 — Present</span>
+      </div>
+      <ul>
+        <li>
+          Built a multi-tenant, WhatsApp-first AI tutoring platform for Nigerian
+          university students, using RAG so answers stay strictly grounded in
+          each course’s uploaded materials rather than general LLM knowledge.
+        </li>
+        <li>
+          Architected the backend on Node.js, TypeScript, Fastify, Prisma, and
+          PostgreSQL, with a document ingestion pipeline (PDF/DOCX/PPTX/images
+          → S3 → OCR → chunking → embeddings) feeding course-scoped vector
+          search on Supabase/pgvector.
+        </li>
+        <li>
+          Designed conversation orchestration with LLM intent classification and
+          a Postgres session state machine; added voice tutoring via Whisper
+          STT/TTS over Twilio WhatsApp, a Next.js 14 admin dashboard, and
+          Flutterwave subscription billing.
+        </li>
+      </ul>
+    </div>
+
+    <div class="proj">
+      <div class="proj-head">
+        <span class="job-title">Ridemate — Backend Engineer</span>
+        <span class="job-meta">05/2024 — Present</span>
+      </div>
+      <p>
+        Built the backend for a ride-sharing app matching passengers by
+        proximity and shared route using Node.js, PostgreSQL, PostGIS, TypeORM,
+        and Twilio; deployed on Heroku.
+      </p>
+    </div>
+
+    <h2>Skills</h2>
+    <div class="skills">
+      <p>
+        <strong>Frontend &amp; Mobile:</strong> React.js, Next.js, Vue.js,
+        Nuxt.js, React Native, Flutter — TypeScript, JavaScript, HTML/CSS, SCSS
+      </p>
+      <p>
+        <strong>Backend &amp; Data:</strong> Node.js, NestJS, Fastify, GraphQL,
+        REST, WebSockets, TypeORM, Prisma — PostgreSQL, PostGIS, MySQL,
+        Firebase, MongoDB, Supabase/pgvector
+      </p>
+      <p>
+        <strong>AI &amp; Messaging:</strong> OpenAI (GPT-4o-mini, Embeddings,
+        Whisper) — RAG / Vector Search — Twilio WhatsApp API — Flutterwave
+      </p>
+      <p>
+        <strong>Tooling &amp; State:</strong> Redux, Zustand, Vuex, React Query
+        — Expo, Git, Jest, Tailwind CSS, Material UI, Chakra UI, Heroku, Railway,
+        GitHub Actions, Resend
+      </p>
+    </div>
+
+    <div class="two">
+      <div>
+        <h2>Education</h2>
+        <p class="edu-line">
+          <strong>BSc, Electrical &amp; Electronics Engineering</strong><br />
+          University of Lagos, Nigeria · 2nd Class Upper (3.59 / 5.0)
+        </p>
+        <h2>Publications</h2>
+        <p class="write-line">
+          <a
+            class="link"
+            href="https://medium.com/@olalereazeez11/complete-guide-to-setting-up-git-ssh-protocol-on-mac-os-gitlab-8ee89eda7d5c"
+            >Complete Guide to Setting up Git SSH Protocol on Mac OS (GitLab
+            &amp; GitHub)</a
+          >
+          — Medium, 2023
+        </p>
+      </div>
+      <div>
+        <h2>Honours &amp; Awards</h2>
+        <p class="cert-line">
+          <a class="link" href="https://ude.my/UC-71c49d9a-95a9-4fc3-bebd-5150af8c727a"
+            >AWS Certified Solutions Architect Course</a
+          >
+          · Udemy · Jul 2026
+        </p>
+        <p class="cert-line">
+          <a class="link" href="https://ude.my/UC-7edfd22e-c7b4-4e66-ac85-6e2693590bd1"
+            >The Complete Node.js Developer Course (3rd Edition)</a
+          >
+          · Udemy · Mar 2024
+        </p>
+        <p class="cert-line">
+          <a class="link" href="https://ude.my/UC-9d3a5260-e1ce-45fd-81a0-4e764e6823e6"
+            >Scrum Developer Certification</a
+          >
+          · Udemy · Apr 2022
+        </p>
+        <p class="cert-line">
+          IELTS · British Council · Band 8.0 (CEFR C1) · Mar 2025
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

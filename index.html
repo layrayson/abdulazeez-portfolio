@@ -606,6 +606,62 @@
         color: var(--dark);
         font-weight: 500;
       }
+      .about-extras {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        margin-top: 3.5rem;
+        padding-top: 3rem;
+        border-top: 1px solid var(--border);
+        align-items: start;
+      }
+      .about-extras p,
+      .about-extras li {
+        font-size: 0.93rem;
+        line-height: 1.82;
+        color: var(--muted);
+      }
+      .about-extras p strong,
+      .about-extras li strong {
+        color: var(--dark);
+        font-weight: 500;
+      }
+      .about-extras .section-label {
+        margin-bottom: 0.65rem;
+      }
+      .cert-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.45rem;
+        margin-bottom: 1.8rem;
+      }
+      .cert-list a,
+      .cert-list .cert-name {
+        color: var(--amber);
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .cert-list a:hover {
+        text-decoration: underline;
+      }
+      .writing-link {
+        color: var(--amber);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 1.6;
+        transition: gap 0.2s;
+      }
+      .writing-link:hover {
+        text-decoration: underline;
+      }
+      .writing-meta {
+        display: block;
+        font-size: 0.78rem;
+        color: var(--muted);
+        margin-top: 0.2rem;
+      }
       .btn-outline {
         display: inline-flex;
         align-items: center;
@@ -1407,6 +1463,7 @@
           padding: 1.4rem 5rem;
         }
         .about-grid,
+        .about-extras,
         .exp-grid,
         .contact-grid {
           grid-template-columns: 1fr;
@@ -1907,9 +1964,12 @@
               <span class="skill-pill">Fastify</span>
               <span class="skill-pill">REST APIs</span>
               <span class="skill-pill">GraphQL</span>
+              <span class="skill-pill">WebSockets</span>
               <span class="skill-pill">Prisma</span>
+              <span class="skill-pill">TypeORM</span>
               <span class="skill-pill">PostgreSQL</span>
               <span class="skill-pill">MySQL</span>
+              <span class="skill-pill">MongoDB</span>
               <span class="skill-pill">Redis</span>
               <span class="skill-pill">PostGIS</span>
               <span class="skill-pill">Supabase/pgvector</span>
@@ -1924,13 +1984,76 @@
               <span class="skill-pill">React.js</span>
               <span class="skill-pill">Next.js</span>
               <span class="skill-pill">React Native</span>
+              <span class="skill-pill">Expo</span>
               <span class="skill-pill">Flutter</span>
               <span class="skill-pill">Vue.js</span>
               <span class="skill-pill">Redux</span>
+              <span class="skill-pill">React Query</span>
               <span class="skill-pill">Tailwind CSS</span>
+              <span class="skill-pill">Chakra UI</span>
+              <span class="skill-pill">Jest</span>
               <span class="skill-pill">Railway</span>
+              <span class="skill-pill">Heroku</span>
               <span class="skill-pill">GitHub Actions</span>
             </div>
+          </div>
+        </div>
+        <div class="about-extras reveal">
+          <div>
+            <p class="section-label">Education</p>
+            <p>
+              <strong>BSc, Electrical &amp; Electronics Engineering</strong
+              ><br />
+              University of Lagos · 2nd Class Upper (3.59 / 5.0)
+            </p>
+          </div>
+          <div>
+            <p class="section-label">Certificates</p>
+            <ul class="cert-list">
+              <li>
+                <a
+                  href="https://ude.my/UC-71c49d9a-95a9-4fc3-bebd-5150af8c727a"
+                  target="_blank"
+                  rel="noopener"
+                  >AWS Solutions Architect Course, Udemy</a
+                >
+                — Jul 2026
+              </li>
+              <li>
+                <a
+                  href="https://ude.my/UC-7edfd22e-c7b4-4e66-ac85-6e2693590bd1"
+                  target="_blank"
+                  rel="noopener"
+                  >The Complete Node.js Developer Course (3rd Edition),
+                  Udemy</a
+                >
+                — Mar 2024
+              </li>
+              <li>
+                <a
+                  href="https://ude.my/UC-9d3a5260-e1ce-45fd-81a0-4e764e6823e6"
+                  target="_blank"
+                  rel="noopener"
+                  >Scrum Developer Certification, Udemy</a
+                >
+                — Apr 2022
+              </li>
+              <li>
+                <span class="cert-name">IELTS Academic</span> — Band 8.0 (CEFR
+                C1), Mar 2025
+              </li>
+            </ul>
+            <p class="section-label">Writing</p>
+            <a
+              href="https://medium.com/@olalereazeez11/complete-guide-to-setting-up-git-ssh-protocol-on-mac-os-gitlab-8ee89eda7d5c"
+              target="_blank"
+              rel="noopener"
+              class="writing-link"
+            >
+              Complete Guide to Setting up Git SSH protocol on Mac OS (GitLab
+              &amp; GitHub)
+              <span class="writing-meta">Medium · 2023</span>
+            </a>
           </div>
         </div>
       </div>
@@ -2240,7 +2363,7 @@
               <div class="p-footer">
                 <div class="p-tech">
                   <span>Node.js</span><span>PostgreSQL</span><span>PostGIS</span
-                  ><span>Twilio</span>
+                  ><span>TypeORM</span><span>Twilio</span><span>Heroku</span>
                 </div>
               </div>
             </div>
@@ -2575,9 +2698,12 @@
           <div class="tech-item"><span class="tech-dot"></span>Fastify</div>
           <div class="tech-item"><span class="tech-dot"></span>REST APIs</div>
           <div class="tech-item"><span class="tech-dot"></span>GraphQL</div>
+          <div class="tech-item"><span class="tech-dot"></span>WebSockets</div>
           <div class="tech-item"><span class="tech-dot"></span>Prisma</div>
+          <div class="tech-item"><span class="tech-dot"></span>TypeORM</div>
           <div class="tech-item"><span class="tech-dot"></span>PostgreSQL</div>
           <div class="tech-item"><span class="tech-dot"></span>MySQL</div>
+          <div class="tech-item"><span class="tech-dot"></span>MongoDB</div>
           <div class="tech-item"><span class="tech-dot"></span>Redis</div>
           <div class="tech-item"><span class="tech-dot"></span>PostGIS</div>
           <div class="tech-item">
@@ -2600,6 +2726,7 @@
           <div class="tech-item">
             <span class="tech-dot"></span>React Native
           </div>
+          <div class="tech-item"><span class="tech-dot"></span>Expo</div>
           <div class="tech-item"><span class="tech-dot"></span>Flutter</div>
           <div class="tech-item">
             <span class="tech-dot"></span>Vue.js / Nuxt.js
@@ -2607,11 +2734,15 @@
           <div class="tech-item">
             <span class="tech-dot"></span>Redux / Zustand
           </div>
+          <div class="tech-item"><span class="tech-dot"></span>React Query</div>
           <div class="tech-item">
             <span class="tech-dot"></span>Tailwind CSS
           </div>
           <div class="tech-item"><span class="tech-dot"></span>Material UI</div>
+          <div class="tech-item"><span class="tech-dot"></span>Chakra UI</div>
+          <div class="tech-item"><span class="tech-dot"></span>Jest</div>
           <div class="tech-item"><span class="tech-dot"></span>Railway</div>
+          <div class="tech-item"><span class="tech-dot"></span>Heroku</div>
           <div class="tech-item">
             <span class="tech-dot"></span>GitHub Actions
           </div>
