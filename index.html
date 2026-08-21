@@ -3,18 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Abdulazeez Olalere — Software Engineer</title>
+    <title>Abdulazeez Olalere, Software Engineer</title>
     <meta
       name="description"
-      content="Fullstack engineer — React, Next.js, React Native, Node.js, NestJS. Applied AI/RAG, fintech, and crypto. Two apps on the stores, several platforms in production. Based in Lagos, Nigeria."
+      content="Software engineer. React, Next.js, React Native, Node.js, NestJS. Applied AI/RAG and fintech. Two apps on the stores, several platforms in production. Based in Lagos, Nigeria."
     />
-    <meta
-      property="og:title"
-      content="Abdulazeez Olalere — Software Engineer"
-    />
+    <meta property="og:title" content="Abdulazeez Olalere, Software Engineer" />
     <meta
       property="og:description"
-      content="Fullstack engineer — React, Next.js, React Native, Node.js. Applied AI/RAG, fintech, and crypto. Two apps on the stores, several platforms in production."
+      content="Software engineer. React, Next.js, React Native, Node.js. Applied AI/RAG and fintech. Two apps on the stores, several platforms in production."
     />
     <meta property="og:type" content="website" />
     <meta
@@ -35,11 +32,11 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="Abdulazeez Olalere — Software Engineer"
+      content="Abdulazeez Olalere, Software Engineer"
     />
     <meta
       name="twitter:description"
-      content="Fullstack engineer — React, Next.js, React Native, Node.js. Applied AI/RAG, fintech, and crypto."
+      content="Software engineer. React, Next.js, React Native, Node.js. Applied AI/RAG and fintech."
     />
     <meta
       name="twitter:image"
@@ -429,9 +426,15 @@
         animation: pulseDot 1.8s ease-out infinite;
       }
       @keyframes pulseDot {
-        0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.55); }
-        70% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        0% {
+          box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.55);
+        }
+        70% {
+          box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+        }
       }
       .hero-name {
         font-size: clamp(2.1rem, 3.6vw, 3rem);
@@ -1063,6 +1066,46 @@
         border-radius: 50%;
         background: var(--amber);
         flex-shrink: 0;
+        animation: twinkle 4.8s ease-in-out infinite;
+      }
+      .tech-item:nth-child(7n + 1) .tech-dot {
+        animation-delay: 0s;
+        animation-duration: 4.4s;
+      }
+      .tech-item:nth-child(7n + 2) .tech-dot {
+        animation-delay: 0.65s;
+        animation-duration: 5.1s;
+      }
+      .tech-item:nth-child(7n + 3) .tech-dot {
+        animation-delay: 1.35s;
+        animation-duration: 4.2s;
+      }
+      .tech-item:nth-child(7n + 4) .tech-dot {
+        animation-delay: 2.05s;
+        animation-duration: 5.4s;
+      }
+      .tech-item:nth-child(7n + 5) .tech-dot {
+        animation-delay: 2.7s;
+        animation-duration: 4.6s;
+      }
+      .tech-item:nth-child(7n + 6) .tech-dot {
+        animation-delay: 3.4s;
+        animation-duration: 5s;
+      }
+      .tech-item:nth-child(7n) .tech-dot {
+        animation-delay: 4s;
+        animation-duration: 4.8s;
+      }
+      .tech-item:hover .tech-dot {
+        animation: none;
+        opacity: 1;
+        transform: scale(1.15);
+        box-shadow: 0 0 8px 2px rgba(232, 160, 32, 0.55);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .tech-dot {
+          animation: none;
+        }
       }
 
       /* ─── CONTACT ─── */
@@ -1305,6 +1348,30 @@
         }
         to {
           transform: rotate(360deg);
+        }
+      }
+      @keyframes twinkle {
+        0%,
+        12%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+          box-shadow: none;
+        }
+        16% {
+          opacity: 0.15;
+          transform: scale(0.65);
+          box-shadow: none;
+        }
+        22% {
+          opacity: 1;
+          transform: scale(1.35);
+          box-shadow: 0 0 10px 3px rgba(232, 160, 32, 0.65);
+        }
+        30% {
+          opacity: 1;
+          transform: scale(1);
+          box-shadow: none;
         }
       }
       .reveal {
@@ -1644,13 +1711,17 @@
       <div class="hero-inner">
         <!-- Left -->
         <div class="hero-text">
-          <p class="hero-greeting"><span class="hero-pulse" aria-hidden="true"></span>Hi, I'm Azeez —</p>
+          <p class="hero-greeting">
+            <span class="hero-pulse" aria-hidden="true"></span>Hi, I'm Azeez —
+          </p>
           <h1 class="hero-name">
             Abdulazeez<br /><span class="accent">Olalere</span>
           </h1>
           <p class="hero-role">Senior Software Engineer</p>
           <p class="hero-bio">
-            Specializing in scalable full-stack applications, mobile products, and RAG-powered AI solutions. 5+ years shipping high-impact Fintech, Crypto, and AI systems.
+            Full-stack, mobile, and applied AI. Five-plus years shipping fintech
+            and crypto products, with two apps on the stores and several
+            platforms in production.
           </p>
         </div>
 
@@ -1749,15 +1820,21 @@
           <!-- Left -->
           <div class="about-text reveal">
             <p class="section-label">About Me</p>
-            <h2 class="section-title">Web. Mobile.<br />Full stack.</h2>
+            <h2 class="section-title">
+              Software Engineer /<br />Full-Stack / AI
+            </h2>
             <p>
-              I'm <strong>Abdulazeez</strong> — a Senior Software Engineer based in Lagos, specialized in bridging the gap between complex web, mobile, and AI architectures. Coming from an Electrical Engineering background, I approach product development with system-level discipline.
+              I'm a software engineer based in Lagos, with a background in
+              Electrical Engineering and a systems-first approach to building
+              software. Over the past 5+ years, I've built and shipped fintech
+              platforms, cross-platform mobile apps, and LLM-powered systems
+              used by real people and businesses.
             </p>
             <p>
-              Over the last <strong>5+ years</strong>, I've taken products from zero to one — shipping production fintech solutions, cross-platform mobile apps, and LLM/RAG pipelines that real users rely on daily.
-            </p>
-            <p>
-              I value clean architecture, high performance, and shipping code that <strong>thrives in production</strong> — not just in a demo.
+              I care about more than getting things to work in a demo. I focus
+              on building reliable, scalable products that hold up in production
+              — from the architecture and infrastructure to the details users
+              interact with every day.
             </p>
             <div
               style="
@@ -1824,28 +1901,35 @@
             </div>
             <p class="section-label">Tech Skills</p>
             <div class="skills-wrap">
-              <span class="skill-pill">React.js</span>
-              <span class="skill-pill">Next.js</span>
-              <span class="skill-pill">React Native</span>
-              <span class="skill-pill">Flutter</span>
               <span class="skill-pill">TypeScript</span>
               <span class="skill-pill">Node.js</span>
               <span class="skill-pill">NestJS</span>
               <span class="skill-pill">Fastify</span>
-              <span class="skill-pill">Prisma</span>
+              <span class="skill-pill">REST APIs</span>
               <span class="skill-pill">GraphQL</span>
+              <span class="skill-pill">Prisma</span>
               <span class="skill-pill">PostgreSQL</span>
+              <span class="skill-pill">MySQL</span>
+              <span class="skill-pill">Redis</span>
+              <span class="skill-pill">PostGIS</span>
               <span class="skill-pill">Supabase/pgvector</span>
+              <span class="skill-pill">Firebase</span>
+              <span class="skill-pill">AWS</span>
+              <span class="skill-pill">Docker</span>
               <span class="skill-pill">OpenAI</span>
               <span class="skill-pill">RAG / Vector Search</span>
-              <span class="skill-pill">Twilio WhatsApp</span>
-              <span class="skill-pill">Redux</span>
+              <span class="skill-pill">Twilio</span>
+              <span class="skill-pill">Flutterwave</span>
+              <span class="skill-pill">Resend</span>
+              <span class="skill-pill">React.js</span>
+              <span class="skill-pill">Next.js</span>
+              <span class="skill-pill">React Native</span>
+              <span class="skill-pill">Flutter</span>
               <span class="skill-pill">Vue.js</span>
-              <span class="skill-pill">Firebase</span>
+              <span class="skill-pill">Redux</span>
               <span class="skill-pill">Tailwind CSS</span>
               <span class="skill-pill">Railway</span>
               <span class="skill-pill">GitHub Actions</span>
-              <span class="skill-pill">Resend</span>
             </div>
           </div>
         </div>
@@ -1868,8 +1952,9 @@
                 margin-top: 1rem;
               "
             >
-              Early startups to funded fintechs — Lagos, Ghana, Delaware, India
-              remote. Always as the person who ships.
+              I've worked everywhere: early startups, funded fintechs, remote
+              teams across Lagos, Ghana, Delaware, and India. Always the person
+              who ships.
             </p>
           </div>
           <!-- Right: timeline -->
@@ -1884,9 +1969,8 @@
               <div class="t-company">Lipaworld</div>
               <ul class="t-points">
                 <li>
-                  Built and shipped a stablecoin wallet (Solana + Base) —
-                  onramp/offramp, P2P transfers, voucher marketplace — to both
-                  stores
+                  Built and shipped a stablecoin wallet (Solana + Base) with
+                  onramp/offramp and P2P transfers to both stores
                 </li>
                 <li>
                   Implemented multi-currency virtual bank accounts (USD, EUR,
@@ -1897,10 +1981,7 @@
                   updates; aligned native libs to 16KB memory pages for Android
                   15+ compliance
                 </li>
-                <li>
-                  Wired up KYC, in-app support, payment SDKs, and Firebase push
-                  notifications
-                </li>
+                <li>Wired up KYC and Firebase push notifications</li>
               </ul>
             </div>
             <div class="t-item">
@@ -1913,8 +1994,8 @@
               <div class="t-company">Titan Payment Systems</div>
               <ul class="t-points">
                 <li>
-                  Built MyCashBox from scratch — mobile money & bank transfer
-                  app for West Africa — shipped to both Play Store and App Store
+                  Built MyCashBox from scratch, a mobile money and bank transfer
+                  app for West Africa, shipped to both Play Store and App Store
                 </li>
                 <li>
                   Designed the full Redux state architecture for auth and all
@@ -1940,15 +2021,12 @@
               <div class="t-company">Thrillers Travels</div>
               <ul class="t-points">
                 <li>
-                  Led the flight & hotel booking system — Tequila (Kiwi) +
-                  RateHawk APIs
+                  Led the flight and hotel booking system using Tequila (Kiwi)
+                  and RateHawk APIs
                 </li>
+                <li>Role-based livestreaming with React Video SDK</li>
                 <li>
-                  Role-based livestreaming with React Video SDK: host, co-host,
-                  speaker, listener
-                </li>
-                <li>
-                  Revamped the visa UI in Next.js — 1,000+ signups followed
+                  Revamped the visa UI in Next.js. 1,000+ signups followed.
                 </li>
               </ul>
             </div>
@@ -1962,13 +2040,13 @@
               <div class="t-company">Joovlin</div>
               <ul class="t-points">
                 <li>
-                  REST APIs, WebSockets, GraphQL — backend from scratch for the
-                  social commerce platform
+                  Built the backend from scratch with REST APIs and GraphQL for
+                  the social commerce platform
                 </li>
                 <li>
                   React + Redux frontend work tied to 4,000+ merchant signups
                 </li>
-                <li>Part of the Flutter app team — shipped to both stores</li>
+                <li>Part of the Flutter app team. Shipped to both stores.</li>
                 <li>6+ additional web apps across different JS frameworks</li>
               </ul>
             </div>
@@ -1982,8 +2060,8 @@
               <div class="t-company">Full Power Webs</div>
               <ul class="t-points">
                 <li>
-                  Fixed critical frontend bugs — 90% resolution rate across
-                  tickets
+                  Fixed critical frontend bugs, with a 90% resolution rate
+                  across tickets
                 </li>
                 <li>
                   Hit 98% Lighthouse score on the main product with React +
@@ -2013,6 +2091,47 @@
             <div class="p-card has-img reveal reveal-d1">
               <div class="p-screenshot">
                 <picture
+                  ><source srcset="visaroom.webp" type="image/webp" />
+                  <img src="visaroom.png" alt="VisaRoom" loading="lazy"
+                /></picture>
+              </div>
+              <div class="p-content">
+                <span class="p-tag">AI · Interview · Live</span>
+                <div class="p-name">VisaRoom</div>
+                <p class="p-desc">
+                  Voice rehearsal for visa interviews. An officer asks real
+                  questions for your track; you answer out loud, under time.
+                  Catches where your own answers don't line up — before the
+                  window does.
+                </p>
+                <div class="p-footer">
+                  <div class="p-tech">
+                    <span>Node.js</span><span>Next.js</span
+                    ><span>TypeScript</span><span>OpenAI</span
+                    ><span>Deepgram</span><span>Drizzle</span
+                    ><span>PostgreSQL</span><span>Flutterwave</span
+                    ><span>AWS</span>
+                  </div>
+                  <a
+                    href="https://visaroom.co"
+                    target="_blank"
+                    rel="noopener"
+                    class="p-link"
+                    >Live
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                    >
+                      <path d="M5 12h14M12 5l7 7-7 7" /></svg
+                  ></a>
+                </div>
+              </div>
+            </div>
+            <div class="p-card has-img reveal reveal-d2">
+              <div class="p-screenshot">
+                <picture
                   ><source srcset="classwyz-min.webp" type="image/webp" />
                   <img src="classwyz-min.png" alt="Classwyz" loading="lazy"
                 /></picture>
@@ -2023,9 +2142,9 @@
                 <p class="p-desc">
                   Multi-tenant WhatsApp-first AI tutoring for Nigerian
                   universities. Students ask on WhatsApp and get answers
-                  grounded in their uploaded class materials via RAG — not
-                  general LLM knowledge. Document ingestion, voice tutoring,
-                  quizzes, mock exams, and Flutterwave subscriptions.
+                  grounded in their uploaded class materials via RAG, not
+                  general LLM knowledge. Document ingestion, quizzes, and
+                  Flutterwave subscriptions.
                 </p>
                 <div class="p-footer">
                   <div class="p-tech">
@@ -2114,9 +2233,9 @@
               <span class="p-tag">Backend · Transport</span>
               <div class="p-name">Ridemate</div>
               <p class="p-desc">
-                Backend for a ride-sharing concept — matches passengers heading
-                the same direction using PostGIS proximity. Node.js, PostgreSQL,
-                Twilio for SMS.
+                Backend for a ride-sharing concept that matches passengers
+                heading the same direction using PostGIS proximity. Node.js,
+                PostgreSQL, Twilio for SMS.
               </p>
               <div class="p-footer">
                 <div class="p-tech">
@@ -2140,11 +2259,11 @@
                 /></picture>
               </div>
               <span class="p-tag">Fintech · Live</span>
-              <div class="p-name">Lipaworld — Stablecoin Wallet</div>
+              <div class="p-name">Lipaworld Stablecoin Wallet</div>
               <p class="p-desc">
-                Stablecoin wallet — buy, sell, send, and spend. KYC flow, push
-                notifications, marketplace. Built and shipped to App Store and
-                Play Store.
+                Stablecoin wallet for buying, selling, and sending. KYC flow,
+                push notifications, marketplace. Built and shipped to App Store
+                and Play Store.
               </p>
               <div class="p-footer">
                 <div class="p-tech">
@@ -2233,9 +2352,9 @@
                 <span class="p-tag">Travel</span>
                 <div class="p-name">Thrillers Travel</div>
                 <p class="p-desc">
-                  Flight search, hotel booking, visa applications — all live.
-                  Tequila and RateHawk API integration. 1,000+ users via the
-                  visa flow alone.
+                  Flight search and hotel booking, all live. Tequila and
+                  RateHawk API integration. 1,000+ users via the visa flow
+                  alone.
                 </p>
                 <div class="p-footer">
                   <div class="p-tech">
@@ -2270,9 +2389,8 @@
                 <span class="p-tag">Social</span>
                 <div class="p-name">NLM Social</div>
                 <p class="p-desc">
-                  Social platform with live audio rooms — different roles, mic
-                  permissions, real-time interactions. Built with React Video
-                  SDK.
+                  Social platform with live audio rooms and role-based mic
+                  permissions. Built with React Video SDK.
                 </p>
                 <div class="p-footer">
                   <div class="p-tech">
@@ -2349,8 +2467,7 @@
                 <span class="p-tag">Insurance</span>
                 <div class="p-name">Afriglobal Insurance</div>
                 <p class="p-desc">
-                  Insurance broker website — clean layout, smooth animations,
-                  fast load.
+                  Insurance broker website with a clean layout and fast load.
                 </p>
                 <div class="p-footer">
                   <div class="p-tech">
@@ -2452,41 +2569,44 @@
           <h2 class="section-title">Tech Stack</h2>
         </div>
         <div class="tech-grid reveal reveal-d1">
+          <div class="tech-item"><span class="tech-dot"></span>TypeScript</div>
+          <div class="tech-item"><span class="tech-dot"></span>Node.js</div>
+          <div class="tech-item"><span class="tech-dot"></span>NestJS</div>
+          <div class="tech-item"><span class="tech-dot"></span>Fastify</div>
+          <div class="tech-item"><span class="tech-dot"></span>REST APIs</div>
+          <div class="tech-item"><span class="tech-dot"></span>GraphQL</div>
+          <div class="tech-item"><span class="tech-dot"></span>Prisma</div>
+          <div class="tech-item"><span class="tech-dot"></span>PostgreSQL</div>
+          <div class="tech-item"><span class="tech-dot"></span>MySQL</div>
+          <div class="tech-item"><span class="tech-dot"></span>Redis</div>
+          <div class="tech-item"><span class="tech-dot"></span>PostGIS</div>
+          <div class="tech-item">
+            <span class="tech-dot"></span>Supabase / pgvector
+          </div>
+          <div class="tech-item"><span class="tech-dot"></span>Firebase</div>
+          <div class="tech-item"><span class="tech-dot"></span>AWS</div>
+          <div class="tech-item"><span class="tech-dot"></span>Docker</div>
+          <div class="tech-item"><span class="tech-dot"></span>OpenAI</div>
+          <div class="tech-item">
+            <span class="tech-dot"></span>RAG / Vector Search
+          </div>
+          <div class="tech-item">
+            <span class="tech-dot"></span>Twilio
+          </div>
+          <div class="tech-item"><span class="tech-dot"></span>Flutterwave</div>
+          <div class="tech-item"><span class="tech-dot"></span>Resend</div>
           <div class="tech-item"><span class="tech-dot"></span>React.js</div>
           <div class="tech-item"><span class="tech-dot"></span>Next.js</div>
           <div class="tech-item">
             <span class="tech-dot"></span>React Native
           </div>
           <div class="tech-item"><span class="tech-dot"></span>Flutter</div>
-          <div class="tech-item"><span class="tech-dot"></span>TypeScript</div>
-          <div class="tech-item"><span class="tech-dot"></span>JavaScript</div>
-          <div class="tech-item"><span class="tech-dot"></span>Node.js</div>
-          <div class="tech-item"><span class="tech-dot"></span>NestJS</div>
-          <div class="tech-item"><span class="tech-dot"></span>Fastify</div>
-          <div class="tech-item"><span class="tech-dot"></span>Prisma</div>
           <div class="tech-item">
             <span class="tech-dot"></span>Vue.js / Nuxt.js
           </div>
-          <div class="tech-item"><span class="tech-dot"></span>GraphQL</div>
-          <div class="tech-item"><span class="tech-dot"></span>PostgreSQL</div>
-          <div class="tech-item">
-            <span class="tech-dot"></span>Supabase / pgvector
-          </div>
-          <div class="tech-item">
-            <span class="tech-dot"></span>MySQL / NoSQL
-          </div>
-          <div class="tech-item"><span class="tech-dot"></span>OpenAI</div>
-          <div class="tech-item">
-            <span class="tech-dot"></span>RAG / Vector Search
-          </div>
-          <div class="tech-item">
-            <span class="tech-dot"></span>Twilio WhatsApp API
-          </div>
-          <div class="tech-item"><span class="tech-dot"></span>Flutterwave</div>
           <div class="tech-item">
             <span class="tech-dot"></span>Redux / Zustand
           </div>
-          <div class="tech-item"><span class="tech-dot"></span>Firebase</div>
           <div class="tech-item">
             <span class="tech-dot"></span>Tailwind CSS
           </div>
@@ -2495,11 +2615,9 @@
           <div class="tech-item">
             <span class="tech-dot"></span>GitHub Actions
           </div>
-          <div class="tech-item"><span class="tech-dot"></span>Resend</div>
           <div class="tech-item">
             <span class="tech-dot"></span>Git / GitHub
           </div>
-          <div class="tech-item"><span class="tech-dot"></span>REST APIs</div>
         </div>
       </div>
     </section>
@@ -2520,7 +2638,7 @@
                 margin-bottom: 2rem;
               "
             >
-              Open to full-time roles and freelance work. Drop me a message — I
+              Open to full-time roles and freelance work. Drop me a message. I
               check my email and usually reply same day.
             </p>
             <div class="c-info-item">
@@ -2876,7 +2994,7 @@
             }, 3000);
           })
           .catch(() => {
-            btn.innerHTML = "Failed — try again " + sendIcon;
+            btn.innerHTML = "Failed. Try again " + sendIcon;
             btn.style.background = "#c0392b";
             btn.disabled = false;
             setTimeout(() => {
