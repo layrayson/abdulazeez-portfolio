@@ -98,6 +98,11 @@
         --accent-soft: #eef1ff;
         --accent-text: #1f3bea;
         --on-accent: #ffffff;
+        --tint-pink: #fdeaf0;
+        --tint-mint: #e7f6ee;
+        --tint-lavender: #f0ebfc;
+        --tint-peach: #fdf3e3;
+        --tint-sky: #e8f2fd;
 
         --font: "Outfit", system-ui, sans-serif;
 
@@ -131,6 +136,11 @@
         --accent-soft: rgba(91, 116, 255, 0.14);
         --accent-text: #8fa0ff;
         --on-accent: #0b0c0f;
+        --tint-pink: #241419;
+        --tint-mint: #13201a;
+        --tint-lavender: #1a1526;
+        --tint-peach: #201a12;
+        --tint-sky: #121a24;
       }
 
       html {
@@ -872,6 +882,21 @@
         color: inherit;
         overflow: hidden;
         transition: border-color var(--d-fast);
+      }
+      .proj-card:nth-child(5n+1) {
+        background: var(--tint-pink);
+      }
+      .proj-card:nth-child(5n+2) {
+        background: var(--tint-mint);
+      }
+      .proj-card:nth-child(5n+3) {
+        background: var(--tint-lavender);
+      }
+      .proj-card:nth-child(5n+4) {
+        background: var(--tint-peach);
+      }
+      .proj-card:nth-child(5n) {
+        background: var(--tint-sky);
       }
       a.proj-card:hover {
         border-color: var(--accent);
