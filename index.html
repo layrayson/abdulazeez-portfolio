@@ -97,8 +97,6 @@
         --accent-soft: #eef1ff;
         --accent-text: #1f3bea;
         --on-accent: #ffffff;
-        --live: #16a34a;
-        --live-glow: rgba(22, 163, 74, 0.15);
 
         --font: "Outfit", system-ui, sans-serif;
 
@@ -132,8 +130,6 @@
         --accent-soft: rgba(91, 116, 255, 0.14);
         --accent-text: #8fa0ff;
         --on-accent: #0b0c0f;
-        --live: #4ade80;
-        --live-glow: rgba(74, 222, 128, 0.18);
       }
 
       html {
@@ -486,36 +482,6 @@
         width: 100%;
         text-align: center;
         padding: 3rem 0;
-      }
-      .badge-live {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        height: 34px;
-        padding: 0 16px;
-        border-radius: var(--r-pill);
-        border: 1px solid var(--rule);
-        background: var(--card);
-        font-size: 13px;
-        font-weight: 500;
-        color: var(--ink-2);
-        margin-bottom: 28px;
-      }
-      .live-dot {
-        position: relative;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--live);
-        flex-shrink: 0;
-      }
-      .live-dot::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: 50%;
-        background: var(--live);
-        opacity: 0.5;
       }
       .hero-h1 {
         font-size: clamp(2.6rem, 8vw, 6rem);
@@ -1342,10 +1308,6 @@
     <section id="hero">
       <div class="hero-dotgrid" aria-hidden="true"></div>
       <div class="container hero-content">
-        <div class="badge-live">
-          <span class="live-dot"></span>
-          Open to full-time roles and freelance work
-        </div>
         <h1 class="hero-h1">Hi, I'm Azeez</h1>
         <p class="hero-subtitle">
           Abdulazeez Olalere<span class="sep">|</span>Senior Software Engineer
@@ -1355,7 +1317,10 @@
           fintech and crypto.
         </p>
         <div class="hero-actions">
-          <a href="#projects" class="btn btn-primary">View projects</a>
+          <a href="#projects" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /></svg>
+            View projects
+          </a>
           <a
             href="resume.pdf"
             download="Abdulazeez-Olalere-Resume.pdf"
