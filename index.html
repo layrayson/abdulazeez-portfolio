@@ -59,6 +59,7 @@
       rel="stylesheet"
     />
     <script>
+      document.documentElement.classList.add("js");
       (function () {
         try {
           var saved = localStorage.getItem("theme");
@@ -711,16 +712,28 @@
         height: 40px;
         border-radius: 50%;
         background: var(--card);
-        border: 2px solid var(--accent);
+        border: 2px solid var(--rule);
         display: flex;
         align-items: center;
         justify-content: center;
+        box-shadow: 0 0 0 0 var(--accent-soft);
+        transition:
+          border-color var(--d-base) var(--ease-out),
+          box-shadow var(--d-base) var(--ease-out);
       }
       .t-marker::after {
         content: "";
         width: 10px;
         height: 10px;
         border-radius: 50%;
+        background: var(--muted);
+        transition: background var(--d-base) var(--ease-out);
+      }
+      .t-marker.reached {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 4px var(--accent-soft);
+      }
+      .t-marker.reached::after {
         background: var(--accent);
       }
       .exp-card {
@@ -1171,6 +1184,29 @@
         }
       }
 
+      /* ─── MOTION: JS-only hidden states (html.js only, so no-JS visitors see everything) ─── */
+      html.js .hero-h1,
+      html.js .hero-subtitle,
+      html.js .hero-line,
+      html.js .hero-actions > *,
+      html.js .stats-card,
+      html.js .hero-dotgrid,
+      html.js .header-inner {
+        opacity: 0;
+      }
+      html.js .eyebrow,
+      html.js section h2,
+      html.js .section-line,
+      html.js .about-lead,
+      html.js .contact-line,
+      html.js .info-card,
+      html.js .tech-tile,
+      html.js .exp-card,
+      html.js .proj-card,
+      html.js .contact-card {
+        opacity: 0;
+      }
+
       @media (prefers-reduced-motion: reduce) {
         html {
           scroll-behavior: auto;
@@ -1332,19 +1368,19 @@
         </div>
         <div class="stats-card">
           <div class="stat">
-            <div class="stat-num">5+</div>
+            <div class="stat-num" data-count="5" data-suffix="+">0</div>
             <div class="stat-lbl">Years experience</div>
           </div>
           <div class="stat">
-            <div class="stat-num">2</div>
+            <div class="stat-num" data-count="2" data-suffix="">0</div>
             <div class="stat-lbl">Apps published</div>
           </div>
           <div class="stat">
-            <div class="stat-num">10</div>
+            <div class="stat-num" data-count="10" data-suffix="">0</div>
             <div class="stat-lbl">Projects shipped</div>
           </div>
           <div class="stat">
-            <div class="stat-num">5</div>
+            <div class="stat-num" data-count="5" data-suffix="">0</div>
             <div class="stat-lbl">Companies</div>
           </div>
         </div>
@@ -1965,6 +2001,321 @@
           });
       }
     </script>
+
+    <!-- ═══════════════════ MOTION (GSAP / ScrollTrigger / SplitText / Lenis) ═══════════════════ -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13/dist/SplitText.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
+    <script>
+      (function () {
+        if (typeof gsap === "undefined") return;
+        gsap.registerPlugin(ScrollTrigger, SplitText);
+
+        function capStagger(base, n) {
+          return n > 1 ? Math.min(base, 0.5 / (n - 1)) : base;
+        }
+
+        function blurIn(targets, opts) {
+          opts = opts || {};
+          var y = opts.y !== undefined ? opts.y : 16;
+          var blur = opts.blur !== undefined ? opts.blur : 10;
+          gsap.fromTo(
+            targets,
+            { y: y, opacity: 0, filter: "blur(" + blur + "px)" },
+            {
+              y: 0,
+              opacity: 1,
+              filter: "blur(0px)",
+              duration: opts.duration || 0.8,
+              delay: opts.delay || 0,
+              stagger: opts.stagger || 0.06,
+              ease: "expo.out",
+              clearProps: "filter",
+            },
+          );
+        }
+
+        function splitWords(el, opts) {
+          if (!el) return;
+          SplitText.create(el, {
+            type: "words",
+            autoSplit: true,
+            onSplit: function (self) {
+              el.style.opacity = 1;
+              blurIn(self.words, opts);
+            },
+          });
+        }
+
+        function splitLines(el, opts) {
+          if (!el) return;
+          SplitText.create(el, {
+            type: "lines",
+            autoSplit: true,
+            onSplit: function (self) {
+              el.style.opacity = 1;
+              blurIn(self.lines, opts);
+            },
+          });
+        }
+
+        function runCounters() {
+          document.querySelectorAll(".stat-num[data-count]").forEach(function (el) {
+            var target = +el.dataset.count;
+            var suffix = el.dataset.suffix || "";
+            var obj = { val: 0 };
+            gsap.to(obj, {
+              val: target,
+              duration: 1,
+              ease: "power1.out",
+              onUpdate: function () {
+                el.textContent = Math.floor(obj.val) + suffix;
+              },
+              onComplete: function () {
+                el.textContent = target + suffix;
+              },
+            });
+          });
+        }
+
+        function revealCards(sectionSel, cardSel, opts) {
+          opts = opts || {};
+          var section = document.querySelector(sectionSel);
+          var els = section ? section.querySelectorAll(cardSel) : null;
+          if (!section || !els || !els.length) return;
+          var stagger = capStagger(opts.stagger || 0.07, els.length);
+          ScrollTrigger.create({
+            trigger: section,
+            start: "top 80%",
+            once: true,
+            onEnter: function () {
+              var blur = opts.blur !== undefined ? opts.blur : 6;
+              gsap.fromTo(
+                els,
+                { y: opts.y !== undefined ? opts.y : 24, opacity: 0, filter: "blur(" + blur + "px)" },
+                {
+                  y: 0,
+                  opacity: 1,
+                  filter: "blur(0px)",
+                  duration: opts.duration || 0.8,
+                  delay: 0.3,
+                  stagger: stagger,
+                  ease: "expo.out",
+                  clearProps: "filter",
+                },
+              );
+            },
+          });
+        }
+
+        function initHero() {
+          gsap.fromTo(".hero-dotgrid", { opacity: 0 }, { opacity: 1, duration: 1.6, ease: "power1.out" });
+          gsap.fromTo(".header-inner", { y: -12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" });
+
+          gsap.delayedCall(0.25, function () {
+            splitWords(document.querySelector(".hero-h1"), { stagger: 0.06, duration: 0.9 });
+          });
+          gsap.delayedCall(0.55, function () {
+            gsap.fromTo(
+              ".hero-subtitle",
+              { opacity: 0, filter: "blur(6px)" },
+              { opacity: 1, filter: "blur(0px)", duration: 0.6, clearProps: "filter" },
+            );
+          });
+          gsap.delayedCall(0.7, function () {
+            splitLines(document.querySelector(".hero-line"), { y: 12, stagger: 0.08, duration: 0.7 });
+          });
+          gsap.delayedCall(0.9, function () {
+            gsap.fromTo(
+              ".hero-actions > *",
+              { y: 12, opacity: 0 },
+              { y: 0, opacity: 1, duration: 0.6, stagger: 0.08, ease: "power2.out" },
+            );
+          });
+          gsap.delayedCall(1.1, function () {
+            gsap.fromTo(".stats-card", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: "expo.out" });
+            runCounters();
+          });
+        }
+
+        function initReveals() {
+          ["#about", "#tech", "#experience", "#projects", "#contact"].forEach(function (sel) {
+            var section = document.querySelector(sel);
+            if (!section) return;
+            var eyebrow = section.querySelector(".eyebrow");
+            var heading = section.querySelector("h2");
+            var line = section.querySelector(".section-line, .about-lead, .contact-line");
+
+            if (eyebrow) {
+              ScrollTrigger.create({
+                trigger: section,
+                start: "top 80%",
+                once: true,
+                onEnter: function () {
+                  gsap.fromTo(eyebrow, { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "power2.out" });
+                },
+              });
+            }
+            if (heading) {
+              ScrollTrigger.create({
+                trigger: section,
+                start: "top 80%",
+                once: true,
+                onEnter: function () {
+                  gsap.delayedCall(0.08, function () {
+                    splitWords(heading, { stagger: 0.06, duration: 0.8 });
+                  });
+                },
+              });
+            }
+            if (line) {
+              ScrollTrigger.create({
+                trigger: section,
+                start: "top 80%",
+                once: true,
+                onEnter: function () {
+                  gsap.delayedCall(0.2, function () {
+                    splitLines(line, { y: 12, stagger: 0.08, duration: 0.7 });
+                  });
+                },
+              });
+            }
+          });
+
+          revealCards("#about", ".info-card");
+          revealCards("#tech", ".tech-tile", { y: 16, blur: 0, duration: 0.6, stagger: 0.04 });
+          revealCards("#projects", ".proj-card");
+          revealCards("#contact", ".contact-card");
+        }
+
+        function initTimeline() {
+          var rail = document.querySelector(".timeline-rail-fill");
+          var timelineEl = document.querySelector(".timeline");
+          if (rail && timelineEl) {
+            gsap.set(rail, { scaleY: 0 });
+            gsap.to(rail, {
+              scaleY: 1,
+              ease: "none",
+              scrollTrigger: { trigger: timelineEl, start: "top 60%", end: "bottom 60%", scrub: true },
+            });
+          }
+
+          document.querySelectorAll(".t-marker").forEach(function (marker) {
+            ScrollTrigger.create({
+              trigger: marker,
+              start: "top 65%",
+              end: "bottom 65%",
+              onEnter: function () {
+                marker.classList.add("reached");
+              },
+              onLeaveBack: function () {
+                marker.classList.remove("reached");
+              },
+            });
+          });
+
+          var cards = document.querySelectorAll(".exp-card");
+          if (cards.length) {
+            ScrollTrigger.create({
+              trigger: "#experience",
+              start: "top 75%",
+              once: true,
+              onEnter: function () {
+                gsap.fromTo(
+                  cards,
+                  { x: 24, opacity: 0, filter: "blur(6px)" },
+                  {
+                    x: 0,
+                    opacity: 1,
+                    filter: "blur(0px)",
+                    duration: 0.7,
+                    stagger: capStagger(0.1, cards.length),
+                    ease: "expo.out",
+                    clearProps: "filter",
+                  },
+                );
+              },
+            });
+          }
+        }
+
+        function initReduced() {
+          gsap.to(
+            [".header-inner", ".hero-dotgrid", ".hero-h1", ".hero-subtitle", ".hero-line", ".hero-actions > *", ".stats-card"],
+            { opacity: 1, duration: 0.2 },
+          );
+          document.querySelectorAll(".stat-num[data-count]").forEach(function (el) {
+            el.textContent = (+el.dataset.count) + (el.dataset.suffix || "");
+          });
+          var rail = document.querySelector(".timeline-rail-fill");
+          if (rail) gsap.set(rail, { scaleY: 1 });
+
+          var targets = document.querySelectorAll(
+            ".eyebrow, section h2, .section-line, .about-lead, .contact-line, .info-card, .tech-tile, .exp-card, .proj-card, .contact-card",
+          );
+          targets.forEach(function (el) {
+            ScrollTrigger.create({
+              trigger: el,
+              start: "top 90%",
+              once: true,
+              onEnter: function () {
+                gsap.to(el, { opacity: 1, duration: 0.2 });
+              },
+            });
+          });
+        }
+
+        var mm = gsap.matchMedia();
+        mm.add(
+          {
+            full: "(pointer: fine) and (prefers-reduced-motion: no-preference)",
+            touch: "(pointer: coarse) and (prefers-reduced-motion: no-preference)",
+            reduce: "(prefers-reduced-motion: reduce)",
+          },
+          function (ctx) {
+            var conditions = ctx.conditions;
+            if (conditions.reduce) {
+              initReduced();
+              return;
+            }
+
+            var lenis = null;
+            if (typeof Lenis !== "undefined") {
+              lenis = new Lenis({ lerp: 0.1, syncTouch: false });
+              lenis.on("scroll", ScrollTrigger.update);
+              gsap.ticker.add(function (time) {
+                lenis.raf(time * 1000);
+              });
+              gsap.ticker.lagSmoothing(0);
+
+              document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+                a.addEventListener("click", function (e) {
+                  var id = a.getAttribute("href").slice(1);
+                  var target = id ? document.getElementById(id) : null;
+                  if (!target) return;
+                  e.preventDefault();
+                  lenis.scrollTo(target, { offset: -96, duration: 1.2 });
+                });
+              });
+            }
+
+            initHero();
+            initReveals();
+            initTimeline();
+
+            return function () {
+              if (lenis) lenis.destroy();
+            };
+          },
+        );
+
+        document.fonts.ready.then(function () {
+          ScrollTrigger.refresh();
+        });
+      })();
+    </script>
+
     <script src="config.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
