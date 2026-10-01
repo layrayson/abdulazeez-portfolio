@@ -377,6 +377,7 @@
 
           function setCursorState(el) {
             ring.className = "cursor-ring";
+            ring.textContent = "";
             dot.classList.remove("is-hidden");
             if (!el) return;
             var viewEl = el.closest('[data-cursor="view"]');
@@ -428,30 +429,11 @@
           var hero = document.getElementById("hero");
           var dotgrid = document.querySelector(".hero-dotgrid");
           if (!hero) return;
-          gsap.to(".hero-h1, .hero-subtitle, .hero-line", {
-            y: -80,
-            opacity: 0.2,
-            ease: "none",
-            scrollTrigger: {
-              trigger: hero,
-              start: "top top",
-              end: "bottom top",
-              scrub: true,
-            },
-          });
-          gsap.to(".stats-card", {
-            y: -30,
-            ease: "none",
-            scrollTrigger: {
-              trigger: hero,
-              start: "top top",
-              end: "bottom top",
-              scrub: true,
-            },
-          });
-          if (dotgrid) {
-            gsap.to(dotgrid, {
-              y: 120,
+          gsap.fromTo(
+            ".hero-h1, .hero-subtitle, .hero-line",
+            { y: 0 },
+            {
+              y: -80,
               ease: "none",
               scrollTrigger: {
                 trigger: hero,
@@ -459,7 +441,37 @@
                 end: "bottom top",
                 scrub: true,
               },
-            });
+            },
+          );
+          gsap.fromTo(
+            ".stats-card",
+            { y: 0 },
+            {
+              y: -30,
+              ease: "none",
+              scrollTrigger: {
+                trigger: hero,
+                start: "top top",
+                end: "bottom top",
+                scrub: true,
+              },
+            },
+          );
+          if (dotgrid) {
+            gsap.fromTo(
+              dotgrid,
+              { y: 0 },
+              {
+                y: 120,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: hero,
+                  start: "top top",
+                  end: "bottom top",
+                  scrub: true,
+                },
+              },
+            );
             var tx = 50,
               ty = 40,
               cx = 50,
