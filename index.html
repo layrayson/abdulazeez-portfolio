@@ -294,6 +294,19 @@
         background: color-mix(in srgb, var(--bg) 82%, transparent);
         backdrop-filter: blur(12px);
         border-bottom: 1px solid var(--rule);
+        transition:
+          transform 0.45s var(--ease-out),
+          background 0.3s,
+          border-color 0.3s;
+      }
+      .site-header.hide-on-scroll {
+        transform: translateY(-100%);
+      }
+      .site-header.collapsed {
+        background: transparent;
+        border-bottom-color: transparent;
+        height: auto;
+        padding: 14px 0;
       }
       .header-inner {
         width: 100%;
@@ -304,6 +317,37 @@
         align-items: center;
         justify-content: space-between;
         gap: 1rem;
+        transition:
+          max-width 0.4s var(--ease-out),
+          background 0.3s,
+          box-shadow 0.3s;
+      }
+      .site-header.collapsed .header-inner {
+        max-width: 620px;
+        background: color-mix(in srgb, var(--card) 88%, transparent);
+        backdrop-filter: blur(14px);
+        border: 1px solid var(--rule);
+        border-radius: var(--r-pill);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        padding: 6px 10px 6px 22px;
+      }
+      .brand-mono {
+        display: none;
+      }
+      .site-header.collapsed .brand-full {
+        display: none;
+      }
+      .site-header.collapsed .brand-mono {
+        display: inline;
+      }
+      .resume-pill-btn {
+        display: none;
+        height: 38px;
+        padding: 0 18px;
+        white-space: nowrap;
+      }
+      .site-header.collapsed .resume-pill-btn {
+        display: inline-flex;
       }
       .brand {
         font-size: 18px;
@@ -313,6 +357,7 @@
         flex-shrink: 0;
       }
       .pill-nav {
+        position: relative;
         display: flex;
         align-items: center;
         gap: 2px;
@@ -322,7 +367,23 @@
         padding: 5px;
         list-style: none;
       }
+      .nav-highlight {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        height: 36px;
+        width: 0;
+        background: var(--surface);
+        border-radius: var(--r-pill);
+        pointer-events: none;
+        z-index: 0;
+        transition:
+          width 0.45s var(--ease-in-out),
+          transform 0.45s var(--ease-in-out);
+      }
       .pill-nav a {
+        position: relative;
+        z-index: 1;
         display: flex;
         align-items: center;
         gap: 6px;
@@ -333,9 +394,7 @@
         font-weight: 500;
         color: var(--muted);
         text-decoration: none;
-        transition:
-          background var(--d-fast),
-          color var(--d-fast);
+        transition: color var(--d-fast);
       }
       .pill-nav a svg {
         width: 15px;
@@ -345,7 +404,6 @@
         color: var(--ink);
       }
       .pill-nav a.active {
-        background: var(--surface);
         color: var(--ink);
       }
       .nav-actions {
@@ -476,12 +534,12 @@
         background-image: radial-gradient(var(--dot) 1px, transparent 1.4px);
         background-size: 24px 24px;
         -webkit-mask-image: radial-gradient(
-          ellipse 60% 55% at 50% 40%,
+          ellipse 60% 55% at var(--hx, 50%) var(--hy, 40%),
           #000 0%,
           transparent 75%
         );
         mask-image: radial-gradient(
-          ellipse 60% 55% at 50% 40%,
+          ellipse 60% 55% at var(--hx, 50%) var(--hy, 40%),
           #000 0%,
           transparent 75%
         );
@@ -818,6 +876,7 @@
 
       /* ─── PROJECTS ─── */
       .filter-pill {
+        position: relative;
         display: flex;
         justify-content: center;
         gap: 4px;
@@ -828,7 +887,23 @@
         max-width: fit-content;
         margin: 0 auto 48px;
       }
+      .filter-highlight {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        height: 36px;
+        width: 0;
+        background: var(--ink);
+        border-radius: var(--r-pill);
+        pointer-events: none;
+        z-index: 0;
+        transition:
+          width 0.45s var(--ease-in-out),
+          transform 0.45s var(--ease-in-out);
+      }
       .filter-btn {
+        position: relative;
+        z-index: 1;
         height: 36px;
         padding: 0 18px;
         border-radius: var(--r-pill);
@@ -839,13 +914,10 @@
         font-weight: 500;
         color: var(--muted);
         cursor: pointer;
-        transition:
-          background var(--d-fast),
-          color var(--d-fast);
+        transition: color var(--d-fast);
         white-space: nowrap;
       }
       .filter-btn.active {
-        background: var(--ink);
         color: var(--bg);
       }
       .proj-group {
@@ -874,6 +946,7 @@
         gap: 20px;
       }
       .proj-card {
+        position: relative;
         display: block;
         background: var(--card);
         border: 1px solid var(--rule);
@@ -881,7 +954,43 @@
         text-decoration: none;
         color: inherit;
         overflow: hidden;
-        transition: border-color var(--d-fast);
+        transition:
+          border-color var(--d-fast),
+          box-shadow var(--d-fast);
+        will-change: transform;
+      }
+      .proj-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          220px circle at var(--mx, 50%) var(--my, 50%),
+          var(--accent-soft),
+          transparent 70%
+        );
+        opacity: 0;
+        transition: opacity var(--d-fast);
+        pointer-events: none;
+        z-index: 0;
+      }
+      .proj-card:hover::before,
+      .proj-card:focus-within::before {
+        opacity: 1;
+      }
+      .proj-card:focus-within {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 4px var(--accent-soft);
+      }
+      .card-well,
+      .card-body {
+        position: relative;
+        z-index: 1;
+      }
+      .card-well img {
+        transition: transform 0.6s var(--ease-out);
+      }
+      .proj-card:hover .card-well img {
+        transform: scale(1.04);
       }
       .proj-card:nth-child(5n+1) {
         background: var(--tint-pink);
@@ -1212,6 +1321,83 @@
         }
       }
 
+      /* ─── CUSTOM CURSOR (desktop, fine pointer only) ─── */
+      html.has-cursor,
+      html.has-cursor a,
+      html.has-cursor button {
+        cursor: none;
+      }
+      html.has-cursor input,
+      html.has-cursor textarea {
+        cursor: text;
+      }
+      .cursor-dot,
+      .cursor-ring {
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9999;
+        border-radius: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        will-change: transform;
+      }
+      .cursor-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--ink);
+        transition: opacity 0.2s;
+      }
+      .cursor-ring {
+        width: 32px;
+        height: 32px;
+        border: 1px solid var(--ink);
+        opacity: 0.3;
+        transition:
+          width 0.2s,
+          height 0.2s,
+          background 0.2s,
+          border-color 0.2s,
+          opacity 0.2s;
+      }
+      .cursor-ring.is-link {
+        width: 44px;
+        height: 44px;
+        background: var(--accent-soft);
+        border-color: transparent;
+        opacity: 1;
+      }
+      .cursor-ring.is-pill {
+        width: auto;
+        height: auto;
+        min-width: 44px;
+        padding: 10px 18px;
+        border-radius: 999px;
+        background: var(--ink);
+        color: var(--bg);
+        border-color: transparent;
+        opacity: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font);
+        font-size: 13px;
+        font-weight: 500;
+        white-space: nowrap;
+        transform: translate3d(-50%, -50%, 0);
+      }
+      .cursor-dot.is-hidden,
+      .cursor-ring.is-hidden {
+        opacity: 0;
+      }
+
+      /* ─── View Transition theme toggle ─── */
+      ::view-transition-old(root),
+      ::view-transition-new(root) {
+        animation: none;
+        mix-blend-mode: normal;
+      }
+
       /* ─── MOTION: JS-only hidden states (html.js only, so no-JS visitors see everything) ─── */
       html.js .hero-h1,
       html.js .hero-subtitle,
@@ -1250,8 +1436,12 @@
     <!-- ═══════════════════ HEADER ═══════════════════ -->
     <header class="site-header" id="siteHeader">
       <div class="header-inner">
-        <a href="#hero" class="brand">Abdulazeez Olalere</a>
+        <a href="#hero" class="brand"
+          ><span class="brand-full">Abdulazeez Olalere</span
+          ><span class="brand-mono">AO</span></a
+        >
         <ul class="pill-nav" id="pillNav">
+          <span class="nav-highlight" id="navHighlight" aria-hidden="true"></span>
           <li>
             <a href="#about" data-nav
               ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4.5 3.6-8 8-8s8 3.5 8 8" /></svg
@@ -1278,6 +1468,12 @@
           </li>
         </ul>
         <div class="nav-actions">
+          <a
+            href="resume.pdf"
+            download="Abdulazeez-Olalere-Resume.pdf"
+            class="btn btn-primary resume-pill-btn"
+            >Resume</a
+          >
           <a
             class="icon-link gh"
             href="https://github.com/layrayson"
@@ -1607,6 +1803,7 @@
         </div>
 
         <div class="filter-pill" id="filterPill">
+          <span class="filter-highlight" id="filterHighlight" aria-hidden="true"></span>
           <button class="filter-btn active" data-filter="all">All</button>
           <button class="filter-btn" data-filter="mobile">Mobile apps</button>
           <button class="filter-btn" data-filter="personal">Personal</button>
@@ -1919,12 +2116,40 @@
           localStorage.setItem("theme", theme);
         } catch (e) {}
       }
-      themeToggle.addEventListener("click", () => {
+      themeToggle.addEventListener("click", (e) => {
         const next =
           document.documentElement.getAttribute("data-theme") === "dark"
             ? "light"
             : "dark";
-        setTheme(next);
+        const reduce =
+          window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (!document.startViewTransition || reduce) {
+          setTheme(next);
+          return;
+        }
+        const x = e.clientX;
+        const y = e.clientY;
+        const radius = Math.hypot(
+          Math.max(x, window.innerWidth - x),
+          Math.max(y, window.innerHeight - y),
+        );
+        const transition = document.startViewTransition(() => setTheme(next));
+        transition.ready.then(() => {
+          document.documentElement.animate(
+            {
+              clipPath: [
+                `circle(0px at ${x}px ${y}px)`,
+                `circle(${radius}px at ${x}px ${y}px)`,
+              ],
+            },
+            {
+              duration: 600,
+              easing: "ease-in-out",
+              pseudoElement: "::view-transition-new(root)",
+            },
+          );
+        });
       });
 
       // ── Mobile menu ──
@@ -2007,23 +2232,93 @@
       // ── Project filter ──
       const filterBtns = document.querySelectorAll(".filter-btn");
       const projGroups = document.querySelectorAll(".proj-group");
+      const filterHighlight = document.getElementById("filterHighlight");
+      function moveFilterHighlight(btn) {
+        if (!filterHighlight || !btn) return;
+        filterHighlight.style.width = btn.offsetWidth + "px";
+        filterHighlight.style.transform = `translateX(${btn.offsetLeft - 5}px)`;
+      }
+      moveFilterHighlight(document.querySelector(".filter-btn.active"));
+      window.addEventListener("resize", () =>
+        moveFilterHighlight(document.querySelector(".filter-btn.active")),
+      );
       filterBtns.forEach((btn) => {
         btn.addEventListener("click", () => {
           filterBtns.forEach((b) => b.classList.remove("active"));
           btn.classList.add("active");
+          moveFilterHighlight(btn);
           const filter = btn.dataset.filter;
+
+          const cards = document.querySelectorAll(".proj-card");
+          const firstRects = new Map();
+          cards.forEach((c) => {
+            if (!c.closest(".proj-group").classList.contains("hidden")) {
+              firstRects.set(c, c.getBoundingClientRect());
+            }
+          });
+
           projGroups.forEach((group) => {
             const match = filter === "all" || group.dataset.group === filter;
             group.classList.toggle("hidden", !match);
             const title = group.querySelector(".proj-group-title");
             if (title) title.classList.toggle("hidden", filter !== "all");
           });
+
+          if (window.gsap) {
+            cards.forEach((c) => {
+              const wasVisible = firstRects.has(c);
+              const isVisible = !c
+                .closest(".proj-group")
+                .classList.contains("hidden");
+              if (wasVisible && isVisible) {
+                const last = c.getBoundingClientRect();
+                const dx = firstRects.get(c).left - last.left;
+                const dy = firstRects.get(c).top - last.top;
+                if (dx || dy) {
+                  gsap.fromTo(
+                    c,
+                    { x: dx, y: dy },
+                    {
+                      x: 0,
+                      y: 0,
+                      duration: 0.5,
+                      ease: "power2.out",
+                      clearProps: "transform",
+                    },
+                  );
+                }
+              } else if (!wasVisible && isVisible) {
+                gsap.fromTo(
+                  c,
+                  { opacity: 0, y: 16, filter: "blur(6px)" },
+                  {
+                    opacity: 1,
+                    y: 0,
+                    filter: "blur(0px)",
+                    duration: 0.6,
+                    ease: "power2.out",
+                    clearProps: "filter",
+                  },
+                );
+              }
+            });
+          }
         });
       });
 
       // ── Active nav on scroll ──
       const sections = document.querySelectorAll("section[id]");
       const navLinks = document.querySelectorAll("[data-nav]");
+      const navHighlight = document.getElementById("navHighlight");
+      function moveNavHighlight(link) {
+        if (!navHighlight) return;
+        if (!link) {
+          navHighlight.style.width = "0px";
+          return;
+        }
+        navHighlight.style.width = link.offsetWidth + "px";
+        navHighlight.style.transform = `translateX(${link.offsetLeft - 5}px)`;
+      }
       window.addEventListener(
         "scroll",
         () => {
@@ -2031,9 +2326,13 @@
           sections.forEach((s) => {
             if (window.scrollY >= s.offsetTop - 160) current = s.id;
           });
+          let activeLink = null;
           navLinks.forEach((a) => {
-            a.classList.toggle("active", a.getAttribute("href") === "#" + current);
+            const isActive = a.getAttribute("href") === "#" + current;
+            a.classList.toggle("active", isActive);
+            if (isActive) activeLink = a;
           });
+          moveNavHighlight(activeLink);
         },
         { passive: true },
       );
@@ -2343,6 +2642,224 @@
           });
         }
 
+        function initMagnetic() {
+          document.querySelectorAll(".btn").forEach(function (btn) {
+            function move(e) {
+              var r = btn.getBoundingClientRect();
+              var cx = r.left + r.width / 2;
+              var cy = r.top + r.height / 2;
+              var dx = e.clientX - cx;
+              var dy = e.clientY - cy;
+              var dist = Math.hypot(dx, dy);
+              var range = Math.max(r.width, r.height) / 2 + 60;
+              if (dist < range) {
+                var x = Math.max(-10, Math.min(10, dx * 0.3));
+                var y = Math.max(-10, Math.min(10, dy * 0.3));
+                gsap.to(btn, { x: x, y: y, duration: 0.3, ease: "power2.out" });
+              }
+            }
+            function leave() {
+              gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.5)" });
+            }
+            document.addEventListener("mousemove", move);
+            btn.addEventListener("mouseleave", leave);
+          });
+        }
+
+        function initCardHover() {
+          document.querySelectorAll(".proj-card").forEach(function (card) {
+            var state = { rx: 0, ry: 0, trx: 0, try_: 0 };
+            var raf = null;
+            function loop() {
+              state.rx += (state.trx - state.rx) * 0.12;
+              state.ry += (state.try_ - state.ry) * 0.12;
+              card.style.transform =
+                "perspective(900px) rotateX(" + state.rx.toFixed(2) + "deg) rotateY(" + state.ry.toFixed(2) + "deg)";
+              if (Math.abs(state.trx - state.rx) > 0.01 || Math.abs(state.try_ - state.ry) > 0.01) {
+                raf = requestAnimationFrame(loop);
+              } else {
+                raf = null;
+              }
+            }
+            function start() {
+              if (!raf) raf = requestAnimationFrame(loop);
+            }
+            card.addEventListener("pointermove", function (e) {
+              var r = card.getBoundingClientRect();
+              var px = (e.clientX - r.left) / r.width;
+              var py = (e.clientY - r.top) / r.height;
+              card.style.setProperty("--mx", px * 100 + "%");
+              card.style.setProperty("--my", py * 100 + "%");
+              state.trx = (0.5 - py) * 4;
+              state.try_ = (px - 0.5) * 6;
+              start();
+            });
+            card.addEventListener("pointerleave", function () {
+              state.trx = 0;
+              state.try_ = 0;
+              start();
+            });
+          });
+        }
+
+        function initCursor() {
+          var dot = document.createElement("div");
+          dot.className = "cursor-dot";
+          dot.setAttribute("aria-hidden", "true");
+          var ring = document.createElement("div");
+          ring.className = "cursor-ring";
+          ring.setAttribute("aria-hidden", "true");
+          document.body.appendChild(dot);
+          document.body.appendChild(ring);
+          document.documentElement.classList.add("has-cursor");
+
+          document.querySelectorAll("a.proj-card").forEach(function (a) {
+            var label =
+              (a.querySelector(".store-pill") &&
+                a.querySelector(".store-pill").textContent.trim()) ||
+              (a.querySelector(".card-view") &&
+                a.querySelector(".card-view").textContent.trim()) ||
+              "View project";
+            a.dataset.cursor = "view";
+            a.dataset.cursorLabel = label;
+          });
+
+          var mx = 0,
+            my = 0,
+            rx = 0,
+            ry = 0;
+          document.addEventListener("mousemove", function (e) {
+            mx = e.clientX;
+            my = e.clientY;
+            dot.style.left = mx + "px";
+            dot.style.top = my + "px";
+            setCursorState(document.elementFromPoint(mx, my));
+          });
+          gsap.ticker.add(function () {
+            rx += (mx - rx) * 0.18;
+            ry += (my - ry) * 0.18;
+            ring.style.left = rx + "px";
+            ring.style.top = ry + "px";
+          });
+          document.addEventListener("pointerdown", function () {
+            gsap.to(ring, { scale: 0.85, duration: 0.15 });
+          });
+          document.addEventListener("pointerup", function () {
+            gsap.to(ring, { scale: 1, duration: 0.15 });
+          });
+          document.addEventListener("mouseleave", function () {
+            dot.classList.add("is-hidden");
+            ring.classList.add("is-hidden");
+          });
+          document.addEventListener("mouseenter", function () {
+            dot.classList.remove("is-hidden");
+          });
+
+          function setCursorState(el) {
+            ring.className = "cursor-ring";
+            dot.classList.remove("is-hidden");
+            if (!el) return;
+            var viewEl = el.closest('[data-cursor="view"]');
+            var isField = el.matches("input, textarea");
+            var isButton = el.closest(
+              "button, .btn, .theme-toggle, .menu-toggle, .filter-btn",
+            );
+            var isLink = el.closest("a");
+            if (isField) {
+              dot.classList.add("is-hidden");
+              ring.classList.add("is-hidden");
+            } else if (viewEl) {
+              ring.classList.add("is-pill");
+              ring.textContent = viewEl.dataset.cursorLabel || "View project";
+              dot.classList.add("is-hidden");
+            } else if (isButton) {
+              dot.classList.add("is-hidden");
+              ring.classList.add("is-hidden");
+            } else if (isLink) {
+              ring.classList.add("is-link");
+              dot.classList.add("is-hidden");
+            }
+          }
+        }
+
+        function initHeaderCollapse() {
+          var header = document.getElementById("siteHeader");
+          var hero = document.getElementById("hero");
+          if (!header || !hero) return;
+          var threshold = hero.offsetHeight * 0.6;
+          var lastY = window.scrollY;
+          window.addEventListener(
+            "scroll",
+            function () {
+              var y = window.scrollY;
+              header.classList.toggle("collapsed", y > threshold);
+              if (y > lastY && y > 150) {
+                header.classList.add("hide-on-scroll");
+              } else {
+                header.classList.remove("hide-on-scroll");
+              }
+              lastY = y;
+            },
+            { passive: true },
+          );
+        }
+
+        function initHeroParallax() {
+          var hero = document.getElementById("hero");
+          var dotgrid = document.querySelector(".hero-dotgrid");
+          if (!hero) return;
+          gsap.to(".hero-h1, .hero-subtitle, .hero-line", {
+            y: -80,
+            opacity: 0.2,
+            ease: "none",
+            scrollTrigger: {
+              trigger: hero,
+              start: "top top",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+          gsap.to(".stats-card", {
+            y: -30,
+            ease: "none",
+            scrollTrigger: {
+              trigger: hero,
+              start: "top top",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+          if (dotgrid) {
+            gsap.to(dotgrid, {
+              y: 120,
+              ease: "none",
+              scrollTrigger: {
+                trigger: hero,
+                start: "top top",
+                end: "bottom top",
+                scrub: true,
+              },
+            });
+            var tx = 50,
+              ty = 40,
+              cx = 50,
+              cy = 40;
+            hero.addEventListener("mousemove", function (e) {
+              var r = hero.getBoundingClientRect();
+              var px = ((e.clientX - r.left) / r.width) * 100;
+              var py = ((e.clientY - r.top) / r.height) * 100;
+              tx = 50 + (px - 50) * 0.4;
+              ty = 40 + (py - 50) * 0.4;
+            });
+            gsap.ticker.add(function () {
+              cx += (tx - cx) * 0.08;
+              cy += (ty - cy) * 0.08;
+              dotgrid.style.setProperty("--hx", cx + "%");
+              dotgrid.style.setProperty("--hy", cy + "%");
+            });
+          }
+        }
+
         var mm = gsap.matchMedia();
         mm.add(
           {
@@ -2380,6 +2897,13 @@
             initHero();
             initReveals();
             initTimeline();
+            if (conditions.full) {
+              initCursor();
+              initMagnetic();
+              initCardHover();
+              initHeaderCollapse();
+              initHeroParallax();
+            }
 
             return function () {
               if (lenis) lenis.destroy();
