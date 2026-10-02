@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="25 25 150 150" role="img" aria-label="Logo">
+<defs>
+<clipPath id="lowSides"><polygon points="100,111 30,200 0,200 0,80 100,111 200,80 200,200 170,200"/></clipPath>
+<mask id="ringCut" maskUnits="userSpaceOnUse" x="0" y="0" width="200" height="200"><rect width="200" height="200" fill="#fff"/><polygon points="62.71,95.99 99.84,16.36 100.16,16.36 137.29,95.99" fill="#000"/></mask>
+<mask id="legCut" maskUnits="userSpaceOnUse" x="0" y="0" width="200" height="200"><rect width="200" height="200" fill="#fff"/><circle cx="100" cy="111" r="50" fill="none" stroke="#000" stroke-width="19" clip-path="url(#lowSides)"/></mask>
+</defs>
+<g fill="none" stroke="#F4F4F2" stroke-width="12" stroke-linejoin="round">
+<circle cx="100" cy="111" r="50" mask="url(#ringCut)"/>
+<path d="M45.2 156 L100 38.5 L154.8 156" stroke-linecap="round" mask="url(#legCut)"/>
+</g>
+</svg>

@@ -47,11 +47,9 @@
       content="Abdulazeez Olalere portfolio preview"
     />
     <meta name="twitter:creator" content="@OlalereAbdulaz2" />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231F3BEA'/><text x='16' y='23' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='20' fill='white'>A</text></svg>"
-    />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon-180.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -347,6 +345,21 @@
       .brand-mono {
         display: none;
       }
+      .brand-mark {
+        width: 22px;
+        height: 22px;
+        flex-shrink: 0;
+        display: block;
+      }
+      .brand-mark-dark {
+        display: none;
+      }
+      [data-theme="dark"] .brand-mark-light {
+        display: none;
+      }
+      [data-theme="dark"] .brand-mark-dark {
+        display: block;
+      }
       .site-header.collapsed .brand-full {
         display: none;
       }
@@ -363,6 +376,9 @@
         display: inline-flex;
       }
       .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
         font-size: 18px;
         font-weight: 600;
         color: var(--ink);
@@ -1452,7 +1468,15 @@
     <header class="site-header" id="siteHeader">
       <div class="header-inner">
         <a href="#hero" class="brand"
-          ><span class="brand-full">Abdulazeez Olalere</span
+          ><img
+            src="/logo-mark-black.svg"
+            alt=""
+            class="brand-mark brand-mark-light"
+          /><img
+            src="/logo-mark-white.svg"
+            alt=""
+            class="brand-mark brand-mark-dark"
+          /><span class="brand-full">Abdulazeez Olalere</span
           ><span class="brand-mono">AO</span></a
         >
         <ul class="pill-nav" id="pillNav">
